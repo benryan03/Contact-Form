@@ -1,21 +1,29 @@
 <html>
-    <head>
-        <title>
-            Form test
-        </title>
-    </head>
-    <body>
-        <center>
-        FORM TEST<br><br>
-        Enter contact details<br><br>
-        <form class="contact-form" action="form.php" method="post">
-            <input type="text" name="userFirstName" placeholder="First name"><br><br>
-            <input type="text" name="userLastName" placeholder="Last name"><br><br>
-            <input type="text" name="userEmail" placeholder="E-mail address"><br><br>
-            <input type="text" name="userPhoneNumber" placeholder="Phone number"><br><br>
-            <input type="text" name="userGender" placeholder="Gender"><br><br>
-            <input type="submit" value="Submit" name="submit">
-        </form>
-        </center>
-    </body>
+<head>
+<title>Contact Form</title>
+
+<link rel="stylesheet" type="text/css" href="default.css">
+
+</head>
+<body>
+<center>
+
+<div class="header">
+    <h1>Contact Form</h1>
+</div>
+
+<div class="content">
+    Enter your contact details:<br><br>
+    <form class="contact-form" action="form.php" method="post">
+        <input type="text" name="userFirstName" placeholder="First name"><br><br>
+        <input type="text" name="userLastName" placeholder="Last name"><br><br>
+        <input type="text" name="userEmail" placeholder="E-mail address"><br><br>
+        <input type="text" name="userPhoneNumber" placeholder="Phone number"><br><br>
+        <input type="text" name="userGender" placeholder="Gender"><br><br>
+        <input type="submit" value="Submit" name="submit">
+    </form>
+</div>
+
+</center>
+</body>
 </html> 
