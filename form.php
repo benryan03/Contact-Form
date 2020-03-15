@@ -20,7 +20,15 @@
         $userLastName = $_POST["userLastName"];
         $userEmail = $_POST["userEmail"];
         $userPhoneNumber = $_POST["userPhoneNumber"];
-        $userGender = $_POST["userGender"];
+        if ($_POST["userGender"] === "male"){
+            $userGender = "M";
+        }
+        elseif ($_POST["userGender"] === "female"){
+            $userGender = "F";
+        }
+        elseif ($_POST["userGender"] === "other"){
+            $userGender = "X";
+        }
 
         $serverName = "SERVER_ADDRESS\sqlexpress";
         $connectionInfo = array("Database"=>"DATABASE_NAME_HERE", "UID"=>"USERNAME_HERE", "PWD"=>"PASSWORD_HERE");
@@ -44,7 +52,6 @@
             echo "Error writing to database.<br><br>";
             die(print_r(sqlsrv_errors(), true));
         }
-
     ?>
 
 </div>
