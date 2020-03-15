@@ -33,19 +33,12 @@ if(!empty($_POST["submit"])){ //if submitted, then validate
         $genderError="Please select your gender";
     }
     else{
-        if ($_POST["userGender"] === "male"){
-            $userGender = "M";
-        }
-        elseif ($_POST["userGender"] === "female"){
-            $userGender = "F";
-        }
-        elseif ($_POST["userGender"] === "other"){
-            $userGender = "X";
-        }
-    }
+        $userGender = $_POST["userGender"];
+    }    
     if (!empty($userFirstName) && !empty($userLastName) && !empty($userEmail) && !empty($userPhoneNumber) && !empty($userGender)){
-        $serverName = "localhost\sqlexpress";
-        $connectionInfo = array("Database"=>"Test", "UID"=>"ben", "PWD"=>"106627");
+
+        $serverName = "SERVER_ADDRESS\sqlexpress";	      
+        $connectionInfo = array("Database"=>"DATABASE_NAME_HERE", "UID"=>"USERNAME_HERE", "PWD"=>"PASSWORD_HERE");        
         $conn = sqlsrv_connect($serverName, $connectionInfo);
 
         $query = "INSERT INTO People VALUES ('$userFirstName', '$userLastName', '$userEmail', '$userPhoneNumber', '$userGender')";
@@ -102,11 +95,11 @@ if(!empty($_POST["submit"])){ //if submitted, then validate
         <input type="text" name="userPhoneNumber" placeholder="Phone number" value="<?php echo htmlentities($userPhoneNumber) ?>">&nbsp;*<br>
         <span class="error"><?php echo "$phoneError" ?></span><br><br>
 
-        <input type="radio" id="male" name="userGender" value="male" <?php echo ($userGender=="male")? "checked":""; ?> >
+        <input type="radio" id="male" name="userGender" value="M" <?php echo ($userGender=="M")? "checked":""; ?> >
         <label for="male">Male</label>
-        <input type="radio" id="female" name="userGender" value="female" <?php echo ($userGender=="female")? "checked":""; ?> >
+        <input type="radio" id="female" name="userGender" value="F" <?php echo ($userGender=="F")? "checked":""; ?> >
         <label for="female">Female</label>
-        <input type="radio" id="other" name="userGender" value="other" <?php echo ($userGender=="other")? "checked":""; ?> >
+        <input type="radio" id="other" name="userGender" value="X" <?php echo ($userGender=="X")? "checked":""; ?> >
         <label for="other">Other</label>&nbsp;*<br>
         <span class="error"><?php echo $genderError ?></span><br><br>
 
@@ -117,4 +110,4 @@ if(!empty($_POST["submit"])){ //if submitted, then validate
 
 </center>
 </body> 
-</html> 
+</html>
