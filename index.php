@@ -13,19 +13,23 @@ $emailError="";
 $genderError = "";
 
 if(!empty($_POST["submit"])){ //if submitted, then validate
-    $userFirstName = trim($_POST["userFirstName"]); //trim() removes whitespace from both sides of input
+    $userFirstName = trim($_POST["userFirstName"], ENT_QUOTES); //trim() removes whitespace from both sides of input
+    $userFirstName = htmlspecialchars($userFirstName); //htmlspecialchars() converts <, >, "", ', and & to HTML entities
     if (empty($userFirstName)){
         $firstNameError = "Please enter your first name";
     }
     $userLastName = trim($_POST["userLastName"]);
+    $userLastName = htmlspecialchars($userLastName);
     if (empty($userLastName)){
         $lastNameError = "Please enter your last name";
     }
     $userEmail = trim($_POST["userEmail"]);
+    $userEmail = htmlspecialchars($userEmail);
     if (empty($userEmail)){
         $emailError = "Please enter your e-mail address";
     }
     $userPhoneNumber = trim($_POST["userPhoneNumber"]);
+    $userPhoneNumber = htmlspecialchars($userPhoneNumber);
     if (empty($userPhoneNumber)){
         $phoneError = "Please enter your phone number";
     }
@@ -81,7 +85,7 @@ if(!empty($_POST["submit"])){ //if submitted, then validate
 
 <div class="content">
     Enter your contact details:<br><br>
-    <form class="contact-form" action="?" method="post">
+    <form class="contact-form" action="? echo htmlspecialchars($_SERVER["PHP_SELF"]) method="post">
 
         <input type="text" name="userFirstName" placeholder="First name" value="<?php echo htmlentities($userFirstName) ?>">&nbsp;*<br>
         <span class="error"><?php echo "$firstNameError" ?></span><br><br>
