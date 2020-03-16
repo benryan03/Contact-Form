@@ -28,6 +28,9 @@ if(!empty($_POST["submit"])){ //if submitted, then validate
     if (empty($userEmail)){
         $emailError = "Please enter your e-mail address";
     }
+    if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)){
+        $emailError = "Please enter a valid e-mail address";        
+    }
     $userPhoneNumber = trim($_POST["userPhoneNumber"]);
     $userPhoneNumber = htmlspecialchars($userPhoneNumber);
     if (empty($userPhoneNumber)){
@@ -39,10 +42,10 @@ if(!empty($_POST["submit"])){ //if submitted, then validate
     else{
         $userGender = $_POST["userGender"];
     }    
-    if (!empty($userFirstName) && !empty($userLastName) && !empty($userEmail) && !empty($userPhoneNumber) && !empty($userGender)){
+    if (!empty($userFirstName) && !empty($userLastName) && !empty($userEmail) && !empty($userPhoneNumber) && !empty($userGender) && filter_var($userEmail, FILTER_VALIDATE_EMAIL)){
 
-        $serverName = "SERVER_ADDRESS\sqlexpress";	      
-        $connectionInfo = array("Database"=>"DATABASE_NAME_HERE", "UID"=>"USERNAME_HERE", "PWD"=>"PASSWORD_HERE");        
+        $serverName = "localhost\sqlexpress";	      
+        $connectionInfo = array("Database"=>"Test", "UID"=>"ben", "PWD"=>"password123");
         $conn = sqlsrv_connect($serverName, $connectionInfo);
 
         $query = "INSERT INTO People VALUES ('$userFirstName', '$userLastName', '$userEmail', '$userPhoneNumber', '$userGender')";
@@ -64,7 +67,7 @@ if(!empty($_POST["submit"])){ //if submitted, then validate
             die(print_r(sqlsrv_errors(), true));
         }
     
-        header("Location:form.php");
+        header("Location:form.html");
     }
 }
 ?>
